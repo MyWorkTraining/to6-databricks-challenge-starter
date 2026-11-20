@@ -58,6 +58,60 @@ assert practice_result == {"connection_check": 1}
 # COMMAND ----------
 
 # Your checks and decision here.
+#I used the catalog view for the initial review of data.
+
+#There are 3 tables and the source lineage. The tables appear to contain sample data representative of tax processing data from tax years 2022, 2023, and 2024.
+
+
+# return_id appears to be the primary unique value for each record. 
+#returns_initial has null values in the income field, so it appears to be the raw-ish data input. However, the source lineage and table descriptions suggest it is the downstream results of data from parsed_sourse. It is not clear how a zero in parsed_source became a null value in the downstream table.
+# returns_initial also contains a duplicate row for return R02, taxpayer_id F1 for year 2022. If this were a real project I would want to confirm this is in fact the correct lineage of the data. returns_initial does not appear to be a good choice for modeling off of.
+
+#Based on initial review of the limited sample data, results_corrected appears to be identical to parsed_source, so there is not an obvious benefit to using one or the other as the source for model creation.
+
+
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC select "parsed_source" as tbl_source,return_id, taxpayer_id, tax_year, income, deduction from training.to6_challenge3_inputs.parsed_source  
+# MAGIC union 
+# MAGIC select "returns_initial" as tbl_source, return_id, taxpayer_id, tax_year, income, deduction from training.to6_challenge3_inputs.returns_initial  
+# MAGIC union
+# MAGIC select "returns_corrected" as tbl_source,return_id, taxpayer_id, tax_year, income, deduction from training.to6_challenge3_inputs.returns_corrected  
+# MAGIC order by 2, 1
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC --select * from training.to6_challenge3_inputs.parsed_source 
+# MAGIC select "parsed_source" as tbl_source, tax_year, avg(income), avg(deduction), count(*) from training.to6_challenge3_inputs.parsed_source  group by tax_year
+# MAGIC union 
+# MAGIC select "returns_initial" as tbl_source, tax_year, avg(income), avg(deduction), count(*) from training.to6_challenge3_inputs.returns_initial  group by tax_year
+# MAGIC union
+# MAGIC select "returns_corrected" as tbl_source, tax_year, avg(income), avg(deduction), count(*) from training.to6_challenge3_inputs.returns_corrected  group by tax_year
+# MAGIC order by 1,2
+# MAGIC
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC select src.* 
+# MAGIC   from training.to6_challenge3_inputs.parsed_source src
+# MAGIC         inner join training.to6_challenge3_inputs.returns_corrected cor
+# MAGIC         on src.return_id = cor.return_id
+# MAGIC  where src.taxpayer_id <> cor.taxpayer_id
+# MAGIC     or src.tax_year <> cor.tax_year
+# MAGIC     or src.income <> cor.income
+# MAGIC     or src.deduction <> cor.deduction
+# MAGIC     or src.return_id <> cor.return_id;
+# MAGIC
+# MAGIC
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC select return_id, tax_year, try_divide(deduction,income) from training.to6_challenge3_inputs.returns_corrected 
 
 # COMMAND ----------
 
