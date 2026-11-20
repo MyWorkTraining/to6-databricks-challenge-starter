@@ -1,9 +1,14 @@
 # Databricks notebook source
+# /// script
+# [tool.databricks.environment]
+# environment_version = "6"
+# ///
 # MAGIC %md
 # MAGIC # Prepare the next team's dataset
 # MAGIC Follow CHALLENGE.md. These headings are a starting point; implement and verify each stage yourself.
 
 # COMMAND ----------
+
 import hashlib
 
 INPUT_SCHEMA = "training.to6_challenge3_inputs"
@@ -15,34 +20,62 @@ OUTPUT_SCHEMA = "training.to6_c3_" + hashlib.sha256(workspace_user.encode("utf-8
 print({"input_schema": INPUT_SCHEMA, "output_schema": OUTPUT_SCHEMA})
 
 # COMMAND ----------
+
 # MAGIC %md
 # MAGIC ## 1. Understand the input
 # MAGIC Record Catalog descriptions, sample observations and the supplied lineage source.
 
 # COMMAND ----------
-# Your investigation here.
+
+from pathlib import Path
+import json
+
+# Copy this Git folder's absolute path from its Workspace menu; include /Workspace/.
+repo_root = Path("/Workspace/Users/kenneth.w.patton.irs@catalyte.ai/to6-databricks-challenge-starter")
+assert (repo_root / "README.md").is_file(), "Check the Git folder path"
+practice_result = spark.sql("SELECT 1 AS connection_check").first().asDict()
+assert practice_result == {"connection_check": 1}
+(repo_root / "outputs").mkdir(exist_ok=True)
+(repo_root / "outputs/connection-practice.json").write_text(
+    json.dumps(practice_result) + "\n", encoding="utf-8"
+)
 
 # COMMAND ----------
+
+# MAGIC %md
+# MAGIC # Your investigation here.
+# MAGIC
+# MAGIC There are 3 tables and the source lineage. The tables appear to contain sample data representative of tax processing data from tax years 2022, 2023, and 2024.
+# MAGIC
+# MAGIC Returns initial has null values in the income field, so it appears to be the raw-ish data input. However, the source lineage and table descriptions suggest it is the downstream results of data from parsed_course. 
+
+# COMMAND ----------
+
 # MAGIC %md
 # MAGIC ## 2. Decide which batch is usable
 # MAGIC Keep the initial rejection evidence and apply the same checks to the replacement.
 
 # COMMAND ----------
+
 # Your checks and decision here.
 
 # COMMAND ----------
+
 # MAGIC %md
 # MAGIC ## 3. Deliver a checked feature table
 # MAGIC Implement the task's data contract and verify the saved result by reading it back.
 
 # COMMAND ----------
+
 # Your implementation and verification here.
 
 # COMMAND ----------
+
 # MAGIC %md
 # MAGIC ## 4. Make the handoff usable
 # MAGIC Save the required year tables. Keep references and IDs-and-values evidence for two successful runs.
 # MAGIC Write SUBMISSION.md and the small exports inside this Databricks Git folder.
 
 # COMMAND ----------
+
 # Your implementation, rerun comparison and exports here.
