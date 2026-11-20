@@ -121,7 +121,7 @@ assert practice_result == {"connection_check": 1}
 # COMMAND ----------
 
 # MAGIC %sql
-# MAGIC select * from training.to6_c3_9120544c968c.return_features;
+# MAGIC select rf.return_id, rf.tax_year, rf.deduction_to_income from training.to6_c3_9120544c968c.return_features rf;
 # MAGIC
 # MAGIC -- R01 incomde is 100, deduction = 20. ratio would be 0.2
 
@@ -130,6 +130,43 @@ assert practice_result == {"connection_check": 1}
 # MAGIC %md
 # MAGIC ## 3. Deliver a checked feature table
 # MAGIC Implement the task's data contract and verify the saved result by reading it back.
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC create table training.to6_c3_9120544c968c.features_train
+# MAGIC select rf.return_id, 
+# MAGIC        rf.tax_year, 
+# MAGIC        rf.deduction_to_income 
+# MAGIC   from training.to6_c3_9120544c968c.return_features rf 
+# MAGIC  where rf.tax_year = 2022;
+# MAGIC  create table training.to6_c3_9120544c968c.features_validation
+# MAGIC select rf.return_id, 
+# MAGIC        rf.tax_year, 
+# MAGIC        rf.deduction_to_income 
+# MAGIC   from training.to6_c3_9120544c968c.return_features rf 
+# MAGIC  where rf.tax_year = 2023;
+# MAGIC  create table training.to6_c3_9120544c968c.features_test
+# MAGIC select rf.return_id, 
+# MAGIC        rf.tax_year, 
+# MAGIC        rf.deduction_to_income 
+# MAGIC   from training.to6_c3_9120544c968c.return_features rf 
+# MAGIC  where rf.tax_year = 2024;
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC select * from training.to6_c3_9120544c968c.features_train;
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC select * from training.to6_c3_9120544c968c.features_validation
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC select * from training.to6_c3_9120544c968c.features_test
 
 # COMMAND ----------
 
