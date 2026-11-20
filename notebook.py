@@ -110,8 +110,20 @@ assert practice_result == {"connection_check": 1}
 
 # COMMAND ----------
 
+
+
+# COMMAND ----------
+
 # MAGIC %sql
-# MAGIC select return_id, tax_year, try_divide(deduction,income) from training.to6_challenge3_inputs.returns_corrected 
+# MAGIC create table training.to6_c3_9120544c968c.return_features
+# MAGIC select return_id, tax_year, try_divide(deduction,income) as deduction_to_income from training.to6_challenge3_inputs.returns_corrected 
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC select * from training.to6_c3_9120544c968c.return_features;
+# MAGIC
+# MAGIC -- R01 incomde is 100, deduction = 20. ratio would be 0.2
 
 # COMMAND ----------
 
