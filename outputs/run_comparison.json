@@ -1,0 +1,94 @@
+{
+  "run_1": {
+    "snapshot": "outputs/run_snapshots/run_20261123T135124Z.json",
+    "captured_at_utc": "2026-11-23T13:51:24.522595+00:00"
+  },
+  "run_2": {
+    "snapshot": "outputs/run_snapshots/run_20261123T135327Z.json",
+    "captured_at_utc": "2026-11-23T13:53:27.852824+00:00"
+  },
+  "notebook_url": "https://dbc-48a16403-f66f.cloud.databricks.com/editor/notebooks/127024866557622",
+  "tables": {
+    "return_features": {
+      "run_1_delta_version": 1,
+      "run_1_written_at_utc": "2026-11-23T13:50:25.851000+00:00",
+      "run_2_delta_version": 2,
+      "run_2_written_at_utc": "2026-11-23T13:52:33.023000+00:00",
+      "run_1_rows": 12,
+      "run_2_rows": 12,
+      "identical_return_ids": true,
+      "identical_ids_and_values": true,
+      "rewritten_between_runs": true,
+      "no_appended_copies": true,
+      "return_ids": [
+        "R01",
+        "R02",
+        "R03",
+        "R04",
+        "R05",
+        "R06",
+        "R07",
+        "R08",
+        "R09",
+        "R10",
+        "R11",
+        "R12"
+      ]
+    },
+    "features_train": {
+      "run_1_delta_version": 1,
+      "run_1_written_at_utc": "2026-11-23T13:50:38.137000+00:00",
+      "run_2_delta_version": 2,
+      "run_2_written_at_utc": "2026-11-23T13:52:44.861000+00:00",
+      "run_1_rows": 4,
+      "run_2_rows": 4,
+      "identical_return_ids": true,
+      "identical_ids_and_values": true,
+      "rewritten_between_runs": true,
+      "no_appended_copies": true,
+      "return_ids": [
+        "R01",
+        "R02",
+        "R03",
+        "R04"
+      ]
+    },
+    "features_validation": {
+      "run_1_delta_version": 1,
+      "run_1_written_at_utc": "2026-11-23T13:50:40.558000+00:00",
+      "run_2_delta_version": 2,
+      "run_2_written_at_utc": "2026-11-23T13:52:47.004000+00:00",
+      "run_1_rows": 4,
+      "run_2_rows": 4,
+      "identical_return_ids": true,
+      "identical_ids_and_values": true,
+      "rewritten_between_runs": true,
+      "no_appended_copies": true,
+      "return_ids": [
+        "R05",
+        "R06",
+        "R07",
+        "R08"
+      ]
+    },
+    "features_test": {
+      "run_1_delta_version": 1,
+      "run_1_written_at_utc": "2026-11-23T13:50:43.066000+00:00",
+      "run_2_delta_version": 2,
+      "run_2_written_at_utc": "2026-11-23T13:52:48.987000+00:00",
+      "run_1_rows": 4,
+      "run_2_rows": 4,
+      "identical_return_ids": true,
+      "identical_ids_and_values": true,
+      "rewritten_between_runs": true,
+      "no_appended_copies": true,
+      "return_ids": [
+        "R09",
+        "R10",
+        "R11",
+        "R12"
+      ]
+    }
+  },
+  "all_tables_identical": true
+}

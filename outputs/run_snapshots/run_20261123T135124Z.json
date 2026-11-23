@@ -1,0 +1,190 @@
+{
+  "captured_at_utc": "2026-11-23T13:51:24.522595+00:00",
+  "notebook_url": "https://dbc-48a16403-f66f.cloud.databricks.com/editor/notebooks/127024866557622",
+  "source_table": "training.to6_challenge3_inputs.returns_corrected",
+  "tables": {
+    "return_features": {
+      "table": "training.to6_c3_9120544c968c.return_features",
+      "delta_version": 1,
+      "written_at_utc": "2026-11-23T13:50:25.851000+00:00",
+      "operation": "CREATE OR REPLACE TABLE AS SELECT",
+      "row_count": 12,
+      "rows": [
+        {
+          "return_id": "R01",
+          "tax_year": 2022,
+          "deduction_to_income": 0.2
+        },
+        {
+          "return_id": "R02",
+          "tax_year": 2022,
+          "deduction_to_income": 0.165
+        },
+        {
+          "return_id": "R03",
+          "tax_year": 2022,
+          "deduction_to_income": null
+        },
+        {
+          "return_id": "R04",
+          "tax_year": 2022,
+          "deduction_to_income": 0.1475
+        },
+        {
+          "return_id": "R05",
+          "tax_year": 2023,
+          "deduction_to_income": 0.144
+        },
+        {
+          "return_id": "R06",
+          "tax_year": 2023,
+          "deduction_to_income": 0.14166666666666666
+        },
+        {
+          "return_id": "R07",
+          "tax_year": 2023,
+          "deduction_to_income": 0.14
+        },
+        {
+          "return_id": "R08",
+          "tax_year": 2023,
+          "deduction_to_income": 0.13875
+        },
+        {
+          "return_id": "R09",
+          "tax_year": 2024,
+          "deduction_to_income": null
+        },
+        {
+          "return_id": "R10",
+          "tax_year": 2024,
+          "deduction_to_income": 0.137
+        },
+        {
+          "return_id": "R11",
+          "tax_year": 2024,
+          "deduction_to_income": 0.13636363636363635
+        },
+        {
+          "return_id": "R12",
+          "tax_year": 2024,
+          "deduction_to_income": 0.13583333333333333
+        }
+      ]
+    },
+    "features_train": {
+      "table": "training.to6_c3_9120544c968c.features_train",
+      "delta_version": 1,
+      "written_at_utc": "2026-11-23T13:50:38.137000+00:00",
+      "operation": "CREATE OR REPLACE TABLE AS SELECT",
+      "row_count": 4,
+      "rows": [
+        {
+          "return_id": "R01",
+          "tax_year": 2022,
+          "deduction_to_income": 0.2
+        },
+        {
+          "return_id": "R02",
+          "tax_year": 2022,
+          "deduction_to_income": 0.165
+        },
+        {
+          "return_id": "R03",
+          "tax_year": 2022,
+          "deduction_to_income": null
+        },
+        {
+          "return_id": "R04",
+          "tax_year": 2022,
+          "deduction_to_income": 0.1475
+        }
+      ]
+    },
+    "features_validation": {
+      "table": "training.to6_c3_9120544c968c.features_validation",
+      "delta_version": 1,
+      "written_at_utc": "2026-11-23T13:50:40.558000+00:00",
+      "operation": "CREATE OR REPLACE TABLE AS SELECT",
+      "row_count": 4,
+      "rows": [
+        {
+          "return_id": "R05",
+          "tax_year": 2023,
+          "deduction_to_income": 0.144
+        },
+        {
+          "return_id": "R06",
+          "tax_year": 2023,
+          "deduction_to_income": 0.14166666666666666
+        },
+        {
+          "return_id": "R07",
+          "tax_year": 2023,
+          "deduction_to_income": 0.14
+        },
+        {
+          "return_id": "R08",
+          "tax_year": 2023,
+          "deduction_to_income": 0.13875
+        }
+      ]
+    },
+    "features_test": {
+      "table": "training.to6_c3_9120544c968c.features_test",
+      "delta_version": 1,
+      "written_at_utc": "2026-11-23T13:50:43.066000+00:00",
+      "operation": "CREATE OR REPLACE TABLE AS SELECT",
+      "row_count": 4,
+      "rows": [
+        {
+          "return_id": "R09",
+          "tax_year": 2024,
+          "deduction_to_income": null
+        },
+        {
+          "return_id": "R10",
+          "tax_year": 2024,
+          "deduction_to_income": 0.137
+        },
+        {
+          "return_id": "R11",
+          "tax_year": 2024,
+          "deduction_to_income": 0.13636363636363635
+        },
+        {
+          "return_id": "R12",
+          "tax_year": 2024,
+          "deduction_to_income": 0.13583333333333333
+        }
+      ]
+    }
+  },
+  "checks": {
+    "columns_exact": [
+      "return_id",
+      "tax_year",
+      "deduction_to_income"
+    ],
+    "accepted_returns": 12,
+    "return_features_rows": 12,
+    "year_table_rows": 12,
+    "each_accepted_return_once_in_features": true,
+    "each_accepted_return_once_across_year_tables": true,
+    "year_assignment_correct": true,
+    "expected_nonzero": {
+      "R01": {
+        "expected": 0.2,
+        "saved": 0.2
+      },
+      "R10": {
+        "expected": 0.137,
+        "saved": 0.137
+      }
+    },
+    "zero_income_null_ratio": {
+      "R03": null,
+      "R09": null
+    }
+  }
+}
